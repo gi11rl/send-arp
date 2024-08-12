@@ -18,7 +18,7 @@ struct EthArpPacket final {
 
 void usage() {
 	printf("syntax: send-arp <interface> <sender ip> <target ip> [<sender ip 2> <target ip 2> ...]\n");
-    printf("sample: send-arp wlan0 192.168.10.2 192.168.10.1\n");
+	printf("sample: send-arp wlan0 192.168.10.2 192.168.10.1\n");
 }
 
 struct ifreq ifr;
@@ -27,7 +27,7 @@ void iface_to_mac(char* iface) {
 	int fd;
 	fd = socket(AF_INET, SOCK_DGRAM, 0);
 	ifr.ifr_addr.sa_family = AF_INET;
-    strncpy(ifr.ifr_name , iface , IFNAMSIZ-1);
+	strncpy(ifr.ifr_name , iface , IFNAMSIZ-1);
 	ioctl(fd, SIOCGIFHWADDR, &ifr);
 	close(fd);
 }
@@ -36,16 +36,16 @@ void iface_to_ip(char* iface) {
 	int fd;
 	fd = socket(AF_INET, SOCK_DGRAM, 0);
 	ifr.ifr_addr.sa_family = AF_INET;
-    strncpy(ifr.ifr_name , iface , IFNAMSIZ-1);
+	strncpy(ifr.ifr_name , iface , IFNAMSIZ-1);
 	ioctl(fd, SIOCGIFADDR, &ifr);
 	close(fd);
 }
 
 int main(int argc, char* argv[]) {
 	if (argc < 4) {
-      usage();
-      return -1;
-    }
+      		usage();
+      		return -1;
+    	}
 
 	for (int i = 2; i<argc; i = i+2) {
 		// 1. Get Attacker's MAC addr
